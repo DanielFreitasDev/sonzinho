@@ -1,5 +1,8 @@
 # Ajustes sobre a configuração padrão do detekt para um projeto Compose.
 naming:
+  MatchingDeclarationName:
+    # Arquivos de tela juntam um ViewModel/estado com suas funções @Composable.
+    active: false
   FunctionNaming:
     # Funções @Composable usam PascalCase.
     ignoreAnnotated: ['Composable']
@@ -43,5 +46,3 @@ Compose:
     active: false
   ViewModelForwarding:
     active: false
-  CompositionLocalAllowlist:
-    allowedCompositionLocals: ['LocalSonzinhoColors']

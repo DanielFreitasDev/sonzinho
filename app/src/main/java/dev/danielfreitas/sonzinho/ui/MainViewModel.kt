@@ -189,9 +189,7 @@ class MainViewModel
                     }
                 }
 
-                else -> {
-                    Unit
-                }
+                else -> {}
             }
         }
 

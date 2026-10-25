@@ -61,7 +61,8 @@ fun LockGuideScreen(
         SectionCard("2. Volte ao Sonzinho") {
             Steps(
                 "Com o modo travado ligado, ao entrar no modo bebê o Android pergunta se deseja fixar o Sonzinho. Confirme.",
-                "Para sair: use “Sair do Sonzinho” na área dos pais, ou o gesto do sistema (na navegação por botões, segure Voltar + Recentes; " +
+                "Para sair: use “Sair do Sonzinho” na área dos pais, ou o gesto do sistema " +
+                    "(na navegação por botões, segure Voltar + Recentes; " +
                     "com gestos, deslize de baixo para cima e segure) e digite o PIN do aparelho.",
             )
             OutlinedButton(onClick = onTestPin) { Text("Fixar agora para testar") }
@@ -71,7 +72,11 @@ fun LockGuideScreen(
             subtitle = "Para quem quer o máximo: Início, Recentes e notificações ficam bloqueados, sem pedir confirmação.",
         ) {
             Text(
-                if (isDeviceOwner) "O Sonzinho já é Device Owner neste aparelho." else "Requer um computador com adb. Veja o README do projeto.",
+                if (isDeviceOwner) {
+                    "O Sonzinho já é Device Owner neste aparelho."
+                } else {
+                    "Requer um computador com adb. Veja o README do projeto."
+                },
                 style = MaterialTheme.typography.bodyMedium,
             )
             SelectionContainer {
@@ -83,7 +88,8 @@ fun LockGuideScreen(
             }
             Text(
                 "Atenção: o Android só aceita esse comando sem contas cadastradas no aparelho (Google, Samsung…), " +
-                    "então em geral é para um aparelho dedicado ao bebê. Para desfazer, use “Remover Device Owner” nas Configurações do Sonzinho.",
+                    "então em geral é para um aparelho dedicado ao bebê. " +
+                    "Para desfazer, use “Remover Device Owner” nas Configurações do Sonzinho.",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.secondary,
             )

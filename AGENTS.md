@@ -15,6 +15,9 @@ Run from the repository root; requires the Android SDK (`platforms;android-37.0`
 - C++ core only: `cmake -S app/src/main/cpp/tests -B /tmp/nht && cmake --build /tmp/nht && /tmp/nht/audio_core_tests`.
 - Regenerate samples: `python3 -I tools/samples/prepare_samples.py <VCSL-clone> app/src/main/assets/sounds`
   (needs ffmpeg with libsoxr/libopus, numpy, soundfile).
+- Release: every push to `main` runs `.github/workflows/release.yml`; if release `v<versionName>` does not
+  exist it runs tests, builds the APK, creates tag + release and publishes `dev.danielfreitas:sonzinho`
+  (type `apk`) to GitHub Packages. Bump `versionCode`/`versionName` to publish a new version (verified 2026-10-25).
 - No emulator is available in cloud sessions (no KVM); on-device behaviour is not verifiable there.
 
 ## Conventions and constraints
@@ -26,6 +29,7 @@ Run from the repository root; requires the Android SDK (`platforms;android-37.0`
   through `CommandQueue`. `SynthPatch` field order is a contract between `SynthPatch.h` and `SynthPatch.kt`.
 - Baby-facing screens: no reading required, no menus, every touch must sound, no fast flashes.
 - Instrument ids are a contract between `Engine.h` (`instrument` namespace) and `Instrument.kt`.
+- `main` is the primary branch; all finished work lands there.
 - No commit, push, dependency upgrade or restructuring unless the task asks for it.
 
 ## Guides

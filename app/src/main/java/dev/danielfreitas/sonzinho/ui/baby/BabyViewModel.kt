@@ -152,4 +152,3 @@ class BabyViewModel
             const val RECORDING_ID_OFFSET = 1_000_000
         }
     }
-

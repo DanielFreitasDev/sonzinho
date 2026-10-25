@@ -115,7 +115,16 @@ fun AnimalsScreen(
                     val c = SonzinhoPalette.note(sound.sound.colorIndex)
                     val br = state.bubbleRadius()
                     drawCircle(c.copy(alpha = 0.35f), radius = br, center = p)
-                    drawCircle(c.copy(alpha = 0.8f), radius = br, center = p, style = androidx.compose.ui.graphics.drawscope.Stroke(width = br * 0.12f))
+                    drawCircle(
+                        c.copy(alpha = 0.8f),
+                        radius = br,
+                        center = p,
+                        style =
+                            androidx.compose.ui.graphics.drawscope.Stroke(
+                                width =
+                                    br * 0.12f,
+                            ),
+                    )
                     drawCircle(Color.White.copy(alpha = 0.6f), radius = br * 0.2f, center = Offset(p.x - br * 0.35f, p.y - br * 0.35f))
                 }
             }
@@ -144,6 +153,7 @@ private class AnimalsState(
     var bubbleNote = 0
 
     private val landscape get() = size.width >= size.height
+
     private fun cols(count: Int) = if (landscape) (count + 1) / 2 else 2
 
     private fun rows(count: Int) = (count + cols(count) - 1) / cols(count)

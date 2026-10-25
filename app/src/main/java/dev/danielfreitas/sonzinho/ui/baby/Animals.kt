@@ -179,7 +179,14 @@ private fun DrawScope.cat(
     for (side in listOf(-1f, 1f)) {
         for (k in 0..1) {
             val y = c.y + r * (0.16f + k * 0.1f)
-            drawLine(Ink.copy(alpha = 0.55f), Offset(c.x + side * r * 0.3f, y), Offset(c.x + side * r * 0.75f, y - r * 0.05f + k * r * 0.1f), strokeWidth = r * 0.025f, cap = StrokeCap.Round)
+            drawLine(
+                Ink.copy(alpha = 0.55f),
+                Offset(c.x + side * r * 0.3f, y),
+                Offset(c.x + side * r * 0.75f, y - r * 0.05f + k * r * 0.1f),
+                strokeWidth =
+                    r * 0.025f,
+                cap = StrokeCap.Round,
+            )
         }
     }
     mouth(Offset(c.x, c.y + r * 0.3f), r, open)
@@ -196,7 +203,15 @@ private fun DrawScope.duck(
     drawOval(Color.White.copy(alpha = 0.3f), topLeft = Offset(c.x - r * 0.55f, c.y + r * 0.2f), size = Size(r * 1.1f, r * 0.6f))
     val beakH = if (open) r * 0.34f else r * 0.24f
     drawOval(a.accent, topLeft = Offset(c.x - r * 0.34f, c.y + r * 0.08f), size = Size(r * 0.68f, beakH))
-    drawLine(Ink.copy(alpha = 0.35f), Offset(c.x - r * 0.26f, c.y + r * 0.08f + beakH / 2), Offset(c.x + r * 0.26f, c.y + r * 0.08f + beakH / 2), strokeWidth = r * 0.02f)
+    drawLine(
+        Ink.copy(alpha = 0.35f),
+        Offset(c.x - r * 0.26f, c.y + r * 0.08f + beakH / 2),
+        Offset(
+            c.x + r * 0.26f,
+            c.y + r * 0.08f + beakH / 2,
+        ),
+        strokeWidth = r * 0.02f,
+    )
 }
 
 private fun DrawScope.frog(

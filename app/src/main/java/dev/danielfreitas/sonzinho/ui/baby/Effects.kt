@@ -138,14 +138,21 @@ class EffectsState(
                 val c = Color(color[i]).copy(alpha = alpha)
                 val s = pSize[i] * (0.6f + 0.4f * t)
                 when (kind[i]) {
-                    KIND_DOT -> drawCircle(c, radius = s * 0.6f, center = Offset(px[i], py[i]))
-                    KIND_STAR ->
+                    KIND_DOT -> {
+                        drawCircle(c, radius = s * 0.6f, center = Offset(px[i], py[i]))
+                    }
+
+                    KIND_STAR -> {
                         withTransform({
                             translate(px[i], py[i])
                             rotate(degrees = spin[i] * (1f - t) * 60f, pivot = Offset.Zero)
                             scale(s, s, pivot = Offset.Zero)
                         }) { drawPath(unitStar, c) }
-                    else -> drawNote(Offset(px[i], py[i]), s, c)
+                    }
+
+                    else -> {
+                        drawNote(Offset(px[i], py[i]), s, c)
+                    }
                 }
             }
         }

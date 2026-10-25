@@ -123,6 +123,7 @@ internal class SampleLoader(
                     channels = f.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
                     sampleRate = f.getInteger(MediaFormat.KEY_SAMPLE_RATE)
                 }
+
                 outIndex >= 0 -> {
                     if (info.size > 0) {
                         val buffer = codec.getOutputBuffer(outIndex)!!

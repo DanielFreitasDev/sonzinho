@@ -59,7 +59,12 @@ fun KeyboardScreen(
         pos: Offset,
         pressure: Float,
     ) {
-        onPlay(instrument.id, notes[key].toFloat(), MusicTheory.velocityForTouch(pressure, 0.6f), MusicTheory.panFor(pos.x, state.size.width.toFloat()))
+        onPlay(
+            instrument.id,
+            notes[key].toFloat(),
+            MusicTheory.velocityForTouch(pressure, 0.6f),
+            MusicTheory.panFor(pos.x, state.size.width.toFloat()),
+        )
         pressedAt[key] = time()
         val color = SonzinhoPalette.note(key)
         effects.ripple(pos.x, pos.y, color, state.size.height * 0.35f)
@@ -118,7 +123,13 @@ fun KeyboardScreen(
                     )
                     val wobble = sin(t * 1.4f + i) * 0.04f * motion + press * 0.15f
                     val iconSize = min(keyW * 0.36f, keyH * 0.2f) * (1f + wobble)
-                    drawKeyShape(KeyShape.entries[i % KeyShape.entries.size], Offset(center.x, gap + keyH * 0.62f), iconSize, Color.White.copy(alpha = 0.9f), color)
+                    drawKeyShape(
+                        KeyShape.entries[i % KeyShape.entries.size],
+                        Offset(center.x, gap + keyH * 0.62f),
+                        iconSize,
+                        Color.White.copy(alpha = 0.9f),
+                        color,
+                    )
                 }
             }
         }
@@ -145,12 +156,17 @@ private fun DrawScope.drawKeyShape(
     background: Color,
 ) {
     when (shape) {
-        KeyShape.CIRCLE -> drawCircle(color, r, c)
-        KeyShape.STAR ->
+        KeyShape.CIRCLE -> {
+            drawCircle(color, r, c)
+        }
+
+        KeyShape.STAR -> {
             withTransform({
                 translate(c.x, c.y)
                 scale(r, r, pivot = Offset.Zero)
             }) { drawPath(EffectsState.unitStar, color) }
+        }
+
         KeyShape.HEART -> {
             val p =
                 Path().apply {
@@ -161,6 +177,7 @@ private fun DrawScope.drawKeyShape(
                 }
             drawPath(p, color)
         }
+
         KeyShape.FLOWER -> {
             for (k in 0 until 6) {
                 val a = k * PI.toFloat() / 3f
@@ -168,8 +185,17 @@ private fun DrawScope.drawKeyShape(
             }
             drawCircle(SonzinhoPalette.Sun, r * 0.35f, c)
         }
-        KeyShape.SQUARE ->
-            drawRoundRect(color, topLeft = Offset(c.x - r * 0.85f, c.y - r * 0.85f), size = Size(r * 1.7f, r * 1.7f), cornerRadius = CornerRadius(r * 0.4f))
+
+        KeyShape.SQUARE -> {
+            drawRoundRect(
+                color,
+                topLeft = Offset(c.x - r * 0.85f, c.y - r * 0.85f),
+                size = Size(r * 1.7f, r * 1.7f),
+                cornerRadius =
+                    CornerRadius(r * 0.4f),
+            )
+        }
+
         KeyShape.TRIANGLE -> {
             val p =
                 Path().apply {
@@ -180,6 +206,7 @@ private fun DrawScope.drawKeyShape(
                 }
             drawPath(p, color)
         }
+
         KeyShape.DROP -> {
             val p =
                 Path().apply {
@@ -190,6 +217,7 @@ private fun DrawScope.drawKeyShape(
                 }
             drawPath(p, color)
         }
+
         KeyShape.MOON -> {
             drawCircle(color, r, c)
             drawCircle(background, r * 0.8f, Offset(c.x + r * 0.45f, c.y - r * 0.2f))

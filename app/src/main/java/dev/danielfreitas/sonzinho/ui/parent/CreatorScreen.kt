@@ -166,7 +166,10 @@ fun CreatorScreen(
             }
         },
     ) {
-        Text("Arraste o dedo no quadro: para cima fica mais agudo, para a direita mais brilhante.", style = MaterialTheme.typography.bodyLarge)
+        Text(
+            "Arraste o dedo no quadro: para cima fica mais agudo, para a direita mais brilhante.",
+            style = MaterialTheme.typography.bodyLarge,
+        )
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
             XYPad(
                 x = p.brightness,
@@ -180,9 +183,21 @@ fun CreatorScreen(
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text("Forma do som", style = MaterialTheme.typography.titleMedium)
                 ChoiceChips(SoundShape.entries, p.shape, { it.displayName }, { shape -> viewModel.update { it.copy(shape = shape) } })
-                LabeledSlider("Duração", p.length, { v -> viewModel.update { it.copy(length = v) } }, startLabel = "Curtinho", endLabel = "Longo", onValueChangeFinished = viewModel::preview)
-                LabeledSlider("Eco", p.echo, { v -> viewModel.update { it.copy(echo = v) } }, startLabel = "Sem eco", endLabel = "Muito eco", onValueChangeFinished = viewModel::preview)
-                LabeledSlider("Balanço", p.wobble, { v -> viewModel.update { it.copy(wobble = v) } }, startLabel = "Parado", endLabel = "Balança", onValueChangeFinished = viewModel::preview)
+                LabeledSlider("Duração", p.length, { v ->
+                    viewModel.update {
+                        it.copy(length = v)
+                    }
+                }, startLabel = "Curtinho", endLabel = "Longo", onValueChangeFinished = viewModel::preview)
+                LabeledSlider("Eco", p.echo, { v ->
+                    viewModel.update {
+                        it.copy(echo = v)
+                    }
+                }, startLabel = "Sem eco", endLabel = "Muito eco", onValueChangeFinished = viewModel::preview)
+                LabeledSlider("Balanço", p.wobble, { v ->
+                    viewModel.update {
+                        it.copy(wobble = v)
+                    }
+                }, startLabel = "Parado", endLabel = "Balança", onValueChangeFinished = viewModel::preview)
                 Text("Cor da bolhinha no modo bebê", style = MaterialTheme.typography.titleMedium)
                 ChoiceChips((0 until SonzinhoPalette.notes.size).toList(), state.colorIndex, { colorName(it) }, viewModel::setColor)
             }
@@ -194,7 +209,14 @@ fun CreatorScreen(
         AlertDialog(
             onDismissRequest = { askName = false },
             title = { Text("Nome do som") },
-            text = { OutlinedTextField(value = name, onValueChange = { name = it.take(40) }, singleLine = true, modifier = Modifier.testTag("nome_som")) },
+            text = {
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it.take(40) },
+                    singleLine = true,
+                    modifier = Modifier.testTag("nome_som"),
+                )
+            },
             confirmButton = {
                 TextButton(onClick = {
                     viewModel.save(name)
@@ -243,7 +265,9 @@ private fun XYPad(
     ) {
         drawRoundRect(
             Brush.linearGradient(listOf(SonzinhoPalette.Night, SonzinhoPalette.Plum, SonzinhoPalette.Dusk)),
-            cornerRadius = androidx.compose.ui.geometry.CornerRadius(48f),
+            cornerRadius =
+                androidx.compose.ui.geometry
+                    .CornerRadius(48f),
         )
         for (k in 1..3) {
             val f = k / 4f

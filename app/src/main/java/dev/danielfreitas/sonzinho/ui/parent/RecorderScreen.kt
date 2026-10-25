@@ -135,7 +135,14 @@ fun RecorderScreen(
                 Text(if (recording) "Parar" else "Gravar")
             }
             Text(
-                if (recording) "Gravando… %d:%02d".format(elapsed / 60_000, (elapsed / 1000) % 60) else "Toque o quadro abaixo. O que você tocar será gravado.",
+                if (recording) {
+                    "Gravando… %d:%02d".format(
+                        elapsed / 60_000,
+                        (elapsed / 1000) % 60,
+                    )
+                } else {
+                    "Toque o quadro abaixo. O que você tocar será gravado."
+                },
                 style = MaterialTheme.typography.titleMedium,
             )
         }

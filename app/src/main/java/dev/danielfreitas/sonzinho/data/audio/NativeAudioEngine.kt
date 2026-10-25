@@ -60,10 +60,11 @@ class NativeAudioEngine
             if (!loadStarted.compareAndSet(false, true)) return
             scope.launch(Dispatchers.Default.limitedParallelism(2)) {
                 val loader = SampleLoader(context.assets)
-                val manifest = runCatching { loader.readManifest() }.getOrElse {
-                    Log.e(TAG, "Manifesto de sons ausente", it)
-                    return@launch
-                }
+                val manifest =
+                    runCatching { loader.readManifest() }.getOrElse {
+                        Log.e(TAG, "Manifesto de sons ausente", it)
+                        return@launch
+                    }
                 val specs = SampledSpec.entries.sortedBy { if (it.slot == priorityInstrument) -1 else it.slot }
                 for (spec in specs) {
                     val inst = manifest.instruments.firstOrNull { it.id == spec.folder } ?: continue

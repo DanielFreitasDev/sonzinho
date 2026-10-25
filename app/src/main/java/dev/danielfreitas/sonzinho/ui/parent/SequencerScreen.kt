@@ -1,14 +1,15 @@
 package dev.danielfreitas.sonzinho.ui.parent
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.VolumeOff
 import androidx.compose.material.icons.rounded.Delete
@@ -39,15 +40,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.danielfreitas.sonzinho.domain.audio.AudioEngine
 import dev.danielfreitas.sonzinho.domain.model.Cell
@@ -247,7 +247,12 @@ fun SequencerScreen(
                 TrackKind.PAD -> listOf(Instrument.PAD, Instrument.VIBRAPHONE, Instrument.CHIMES, Instrument.FLUTE)
                 else -> Instrument.melodic
             }
-        ChoiceChips(options, Instrument.fromId(track.instrumentId) ?: options.first(), { it.displayName }, { viewModel.setInstrument(it.id) })
+        ChoiceChips(
+            options,
+            Instrument.fromId(track.instrumentId) ?: options.first(),
+            { it.displayName },
+            { viewModel.setInstrument(it.id) },
+        )
         var tempo by remember(song.tempoBpm) { mutableFloatStateOf(song.tempoBpm.toFloat()) }
         LabeledSlider(
             label = "Andamento",
@@ -318,7 +323,12 @@ private fun StepGrid(
                             cornerRadius = CornerRadius(cell.minDimension * 0.3f),
                         )
                     } else if (on) {
-                        drawCircle(color.copy(alpha = 0.35f), radius = cell.minDimension * 0.18f, center = topLeft + Offset(cell.width / 2, cell.height / 2))
+                        drawCircle(
+                            color.copy(alpha = 0.35f),
+                            radius = cell.minDimension * 0.18f,
+                            center =
+                                topLeft + Offset(cell.width / 2, cell.height / 2),
+                        )
                     }
                 }
             }

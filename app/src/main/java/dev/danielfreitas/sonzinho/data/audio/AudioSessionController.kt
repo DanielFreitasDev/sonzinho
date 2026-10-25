@@ -29,7 +29,10 @@ class AudioSessionController
         private val focusListener =
             AudioManager.OnAudioFocusChangeListener { change ->
                 when (change) {
-                    AudioManager.AUDIOFOCUS_GAIN -> engine.setMuted(false)
+                    AudioManager.AUDIOFOCUS_GAIN -> {
+                        engine.setMuted(false)
+                    }
+
                     AudioManager.AUDIOFOCUS_LOSS,
                     AudioManager.AUDIOFOCUS_LOSS_TRANSIENT,
                     AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK,

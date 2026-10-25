@@ -97,6 +97,7 @@ fun MagicScreen(
             for (i in 0 until n) {
                 val v0 = i / n.toFloat()
                 val v1 = (i + 1) / n.toFloat()
+
                 // Bordas da faixa: pontos onde a*x + b*(h - y) = v.
                 fun xAt(
                     v: Float,

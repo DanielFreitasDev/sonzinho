@@ -155,8 +155,11 @@ class MainViewModel
         /** Volta um nível: subtelas → área dos pais → bebê. */
         fun back() {
             when (_screen.value) {
-                Screen.Baby, Screen.Loading -> Unit // o bebê nunca sai pelo botão voltar
+                Screen.Baby, Screen.Loading -> Unit
+
+                // o bebê nunca sai pelo botão voltar
                 Screen.ParentHome, Screen.Welcome -> navigate(Screen.Baby)
+
                 else -> navigate(Screen.ParentHome)
             }
         }
@@ -176,12 +179,19 @@ class MainViewModel
 
         fun submitAnswer(answer: String) {
             when (val g = _gate.value) {
-                is GateState.Math -> if (g.challenge.isCorrect(answer)) unlocked() else wrong()
-                is GateState.Pin ->
+                is GateState.Math -> {
+                    if (g.challenge.isCorrect(answer)) unlocked() else wrong()
+                }
+
+                is GateState.Pin -> {
                     viewModelScope.launch {
                         if (settingsRepository.verifyPin(answer)) unlocked() else wrong()
                     }
-                else -> Unit
+                }
+
+                else -> {
+                    Unit
+                }
             }
         }
 

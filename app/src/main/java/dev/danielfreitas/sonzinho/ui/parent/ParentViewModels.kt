@@ -87,14 +87,20 @@ class SettingsViewModel
         /** Toca um arpejo curto para os pais conferirem volume e timbre. */
         fun testSound() {
             val s = settings.value
-            val instrument = dev.danielfreitas.sonzinho.domain.model.Instrument.fromId(s.instrumentId)
-                ?: dev.danielfreitas.sonzinho.domain.model.Instrument.MARIMBA
+            val instrument =
+                dev.danielfreitas.sonzinho.domain.model.Instrument
+                    .fromId(s.instrumentId)
+                    ?: dev.danielfreitas.sonzinho.domain.model.Instrument.MARIMBA
             val notes = MusicTheory.playableNotes(s.scale, s.key, instrument, 8)
             val events =
                 notes.take(6).mapIndexed { i, midi ->
-                    dev.danielfreitas.sonzinho.domain.audio.SequenceEvent(i * 0.18, instrument.id, midi.toFloat(), 0.75f, 0.6f)
+                    dev.danielfreitas.sonzinho.domain.audio
+                        .SequenceEvent(i * 0.18, instrument.id, midi.toFloat(), 0.75f, 0.6f)
                 }
-            engine.setSequence(dev.danielfreitas.sonzinho.domain.audio.SequenceData(TEST_ID, 2.0, loop = false, events = events))
+            engine.setSequence(
+                dev.danielfreitas.sonzinho.domain.audio
+                    .SequenceData(TEST_ID, 2.0, loop = false, events = events),
+            )
             engine.playSequence(fromStart = true)
         }
 
@@ -187,9 +193,13 @@ class LibraryViewModel
             val notes = MusicTheory.scaleNotes(s.scale, s.key, 55, 79)
             val events =
                 listOf(0, 2, 4, 2).mapIndexed { i, idx ->
-                    dev.danielfreitas.sonzinho.domain.audio.SequenceEvent(i * 0.3, slot, notes[idx % notes.size].toFloat(), 0.8f, 0.4f)
+                    dev.danielfreitas.sonzinho.domain.audio
+                        .SequenceEvent(i * 0.3, slot, notes[idx % notes.size].toFloat(), 0.8f, 0.4f)
                 }
-            engine.setSequence(dev.danielfreitas.sonzinho.domain.audio.SequenceData(SOUND_OFFSET + sound.id.toInt(), 2.4, false, events))
+            engine.setSequence(
+                dev.danielfreitas.sonzinho.domain.audio
+                    .SequenceData(SOUND_OFFSET + sound.id.toInt(), 2.4, false, events),
+            )
             engine.playSequence(fromStart = true)
             _playingKey.value = "sound-${sound.id}"
         }

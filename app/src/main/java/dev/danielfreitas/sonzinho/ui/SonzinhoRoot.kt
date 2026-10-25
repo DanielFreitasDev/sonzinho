@@ -45,10 +45,15 @@ fun SonzinhoRoot(
 
     SonzinhoTheme {
         when (val s = screen) {
-            Screen.Loading -> Box(Modifier.fillMaxSize().background(SonzinhoPalette.Night))
-            Screen.Welcome ->
+            Screen.Loading -> {
+                Box(Modifier.fillMaxSize().background(SonzinhoPalette.Night))
+            }
+
+            Screen.Welcome -> {
                 WelcomeScreen(onStart = viewModel::finishOnboarding, onLockGuide = { viewModel.navigate(Screen.LockGuide) })
-            Screen.Baby ->
+            }
+
+            Screen.Baby -> {
                 BabyScreen(
                     gate = gate,
                     resting = resting,
@@ -56,13 +61,17 @@ fun SonzinhoRoot(
                     onSubmitAnswer = viewModel::submitAnswer,
                     onDismissGate = viewModel::dismissGate,
                 )
-            Screen.ParentHome ->
+            }
+
+            Screen.ParentHome -> {
                 ParentHomeScreen(
                     onNavigate = viewModel::navigate,
                     onBackToBaby = { viewModel.navigate(Screen.Baby) },
                     onExitApp = actions::exitApp,
                 )
-            Screen.Settings ->
+            }
+
+            Screen.Settings -> {
                 SettingsScreen(
                     onBack = viewModel::back,
                     onLockGuide = { viewModel.navigate(Screen.LockGuide) },
@@ -70,23 +79,40 @@ fun SonzinhoRoot(
                     isDeviceOwner = actions.isDeviceOwner,
                     onRemoveDeviceOwner = actions::removeDeviceOwner,
                 )
-            Screen.LockGuide ->
+            }
+
+            Screen.LockGuide -> {
                 LockGuideScreen(
                     onBack = viewModel::back,
                     lockLevel = actions.lockLevel(),
                     isDeviceOwner = actions.isDeviceOwner,
                     onTestPin = actions::pinNow,
                 )
-            Screen.Credits -> CreditsScreen(onBack = viewModel::back)
-            is Screen.Sequencer -> SequencerScreen(songId = s.songId, onBack = viewModel::back)
-            is Screen.Creator -> CreatorScreen(soundId = s.soundId, onBack = viewModel::back)
-            Screen.Recorder -> RecorderScreen(onBack = viewModel::back)
-            Screen.Library ->
+            }
+
+            Screen.Credits -> {
+                CreditsScreen(onBack = viewModel::back)
+            }
+
+            is Screen.Sequencer -> {
+                SequencerScreen(songId = s.songId, onBack = viewModel::back)
+            }
+
+            is Screen.Creator -> {
+                CreatorScreen(soundId = s.soundId, onBack = viewModel::back)
+            }
+
+            Screen.Recorder -> {
+                RecorderScreen(onBack = viewModel::back)
+            }
+
+            Screen.Library -> {
                 LibraryScreen(
                     onBack = viewModel::back,
                     onEditSong = { viewModel.navigate(Screen.Sequencer(it)) },
                     onEditSound = { viewModel.navigate(Screen.Creator(it)) },
                 )
+            }
         }
     }
 }

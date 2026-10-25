@@ -41,10 +41,19 @@ fun BabyScreen(
     Box(Modifier.fillMaxSize().background(SonzinhoPalette.Night).testTag("modo_bebe")) {
         UnlockCornerDetector(onHeld = onCornerHeld) {
             when (s.babyActivity) {
-                BabyActivity.MAGIC_SCREEN -> MagicScreen(s, effects, haptics, play)
-                BabyActivity.ANIMALS -> AnimalsScreen(s, sounds, effects, haptics, play)
-                BabyActivity.KEYBOARD -> KeyboardScreen(s, effects, haptics, play)
-                BabyActivity.AUTO_MUSIC ->
+                BabyActivity.MAGIC_SCREEN -> {
+                    MagicScreen(s, effects, haptics, play)
+                }
+
+                BabyActivity.ANIMALS -> {
+                    AnimalsScreen(s, sounds, effects, haptics, play)
+                }
+
+                BabyActivity.KEYBOARD -> {
+                    KeyboardScreen(s, effects, haptics, play)
+                }
+
+                BabyActivity.AUTO_MUSIC -> {
                     AutoMusicScreen(
                         settings = s,
                         item = autoItem,
@@ -55,6 +64,7 @@ fun BabyScreen(
                         onStop = viewModel::stopAutoMusic,
                         onPlay = play,
                     )
+                }
             }
             if (resting) RestOverlay()
         }

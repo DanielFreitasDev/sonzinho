@@ -36,7 +36,14 @@ class SettingsUiTest {
         compose.mainClock.autoAdvance = false
         compose.setContent {
             SonzinhoTheme {
-                SettingsScreen(onBack = {}, onLockGuide = {}, onCredits = {}, isDeviceOwner = false, onRemoveDeviceOwner = {}, viewModel = vm)
+                SettingsScreen(
+                    onBack = {},
+                    onLockGuide = {},
+                    onCredits = {},
+                    isDeviceOwner = false,
+                    onRemoveDeviceOwner = {},
+                    viewModel = vm,
+                )
             }
         }
         compose.mainClock.advanceTimeBy(100)

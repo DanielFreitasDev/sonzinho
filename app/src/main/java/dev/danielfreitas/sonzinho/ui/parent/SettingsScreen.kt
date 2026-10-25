@@ -82,7 +82,9 @@ fun SettingsScreen(
 
         SectionCard("Instrumento e escala", subtitle = "A pentatônica faz qualquer combinação de notas soar bonita.") {
             Text("Instrumento padrão", style = MaterialTheme.typography.titleMedium)
-            ChoiceChips(Instrument.melodic, Instrument.fromId(s.instrumentId) ?: Instrument.MARIMBA, { it.displayName }, { viewModel.setInstrument(it.id) })
+            ChoiceChips(Instrument.melodic, Instrument.fromId(s.instrumentId) ?: Instrument.MARIMBA, {
+                it.displayName
+            }, { viewModel.setInstrument(it.id) })
             Text("Escala", style = MaterialTheme.typography.titleMedium)
             ChoiceChips(Scale.entries, s.scale, { it.displayName }, viewModel::setScale)
             Text(s.scale.description, style = MaterialTheme.typography.bodyMedium)
@@ -107,7 +109,15 @@ fun SettingsScreen(
 
         SectionCard("Tempo de uso") {
             Text("Aviso de descanso", style = MaterialTheme.typography.titleMedium)
-            ChoiceChips(AppSettings.reminderOptions, s.usageReminderMinutes, { if (it == 0) "Desligado" else "$it min" }, viewModel::setUsageReminder)
+            ChoiceChips(AppSettings.reminderOptions, s.usageReminderMinutes, {
+                if (it ==
+                    0
+                ) {
+                    "Desligado"
+                } else {
+                    "$it min"
+                }
+            }, viewModel::setUsageReminder)
             Text(
                 "Depois do tempo escolhido, a tela escurece com uma lua dormindo e o som para até um adulto voltar.",
                 style = MaterialTheme.typography.bodyMedium,
@@ -149,7 +159,10 @@ fun SettingsScreen(
                 }) { Text("Diagnóstico de áudio") }
             }
             diagnostics?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
-            Text("Versão ${BuildConfig.VERSION_NAME} · sem internet, sem anúncios, sem coleta de dados.", style = MaterialTheme.typography.bodyMedium)
+            Text(
+                "Versão ${BuildConfig.VERSION_NAME} · sem internet, sem anúncios, sem coleta de dados.",
+                style = MaterialTheme.typography.bodyMedium,
+            )
         }
 
         SectionCard("Apagar dados") {

@@ -22,11 +22,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Backspace
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -39,9 +39,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.withTransform
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
@@ -124,7 +124,9 @@ fun UnlockCornerDetector(
                     sweepAngle = 360f * progress,
                     useCenter = false,
                     topLeft = Offset(c.x - r * 2.4f, c.y - r * 2.4f),
-                    size = androidx.compose.ui.geometry.Size(r * 4.8f, r * 4.8f),
+                    size =
+                        androidx.compose.ui.geometry
+                            .Size(r * 4.8f, r * 4.8f),
                     style = Stroke(width = r * 0.5f, cap = StrokeCap.Round),
                 )
             }
@@ -165,6 +167,7 @@ fun ParentChallengeOverlay(
                         Spacer(Modifier.height(8.dp))
                         Text("Tente de novo em ${gate.secondsLeft} s", style = MaterialTheme.typography.bodyLarge)
                     }
+
                     is GateState.Math, is GateState.Pin -> {
                         val title = if (gate is GateState.Math) gate.challenge.question else "Digite o PIN dos pais"
                         val wrong = (gate as? GateState.Math)?.wrong == true || (gate as? GateState.Pin)?.wrong == true
@@ -190,7 +193,10 @@ fun ParentChallengeOverlay(
                             },
                         )
                     }
-                    GateState.Hidden -> Unit
+
+                    GateState.Hidden -> {
+                        Unit
+                    }
                 }
                 TextButton(onClick = onDismiss) { Text("Voltar a brincar") }
             }
@@ -245,7 +251,9 @@ fun RestOverlay(modifier: Modifier = Modifier) {
             }.semantics { contentDescription = "Hora de descansar" },
         contentAlignment = Alignment.Center,
     ) {
-        val time = dev.danielfreitas.sonzinho.ui.baby.rememberAmbientTime()
+        val time =
+            dev.danielfreitas.sonzinho.ui.baby
+                .rememberAmbientTime()
         Canvas(Modifier.fillMaxSize()) {
             val t = time()
             for (k in 0 until 24) {

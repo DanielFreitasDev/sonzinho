@@ -55,8 +55,7 @@ class DataStoreSettingsRepository
 
         override suspend fun setAnimalSoundMode(value: AnimalSoundMode) = put(Keys.ANIMAL_SOUND, value.name)
 
-        override suspend fun setKeyboardKeys(count: Int) =
-            put(Keys.KEYBOARD_KEYS, count.coerceIn(AppSettings.keyboardKeyRange))
+        override suspend fun setKeyboardKeys(count: Int) = put(Keys.KEYBOARD_KEYS, count.coerceIn(AppSettings.keyboardKeyRange))
 
         override suspend fun setReverb(value: Float) = put(Keys.REVERB, value.coerceIn(0f, 2f))
 

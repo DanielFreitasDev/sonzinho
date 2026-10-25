@@ -28,7 +28,12 @@ class SequencerLogicTest {
     fun `melodia aceita acordes mas o grave toca uma nota por passo`() {
         var s = SongEditor.toggleCell(empty, TrackKind.MELODY, 0, 1)
         s = SongEditor.toggleCell(s, TrackKind.MELODY, 0, 4)
-        assertEquals(2, s.tracks.first { it.kind == TrackKind.MELODY }.cells.size)
+        assertEquals(
+            2,
+            s.tracks
+                .first { it.kind == TrackKind.MELODY }
+                .cells.size,
+        )
         var b = SongEditor.toggleCell(empty, TrackKind.BASS, 0, 1)
         b = SongEditor.toggleCell(b, TrackKind.BASS, 0, 4)
         assertEquals(setOf(Cell(0, 4)), b.tracks.first { it.kind == TrackKind.BASS }.cells)
@@ -82,7 +87,14 @@ class SequencerLogicTest {
     fun `instrumento da linha e respeitado`() {
         var s = SongEditor.toggleCell(empty, TrackKind.MELODY, 0, 0)
         s = SongEditor.setInstrument(s, TrackKind.MELODY, Instrument.HARP.id)
-        assertEquals(Instrument.HARP.id, SongScheduler.toSequence(s).events.single().instrumentId)
+        assertEquals(
+            Instrument.HARP.id,
+            SongScheduler
+                .toSequence(s)
+                .events
+                .single()
+                .instrumentId,
+        )
     }
 
     @Test
@@ -110,6 +122,13 @@ class SequencerLogicTest {
     fun `musica de exemplo nao e vazia e usa as quatro linhas`() {
         val demo = SongEditor.demoSong()
         assertFalse(demo.isEmpty)
-        assertTrue(TrackKind.entries.all { kind -> demo.tracks.first { it.kind == kind }.cells.isNotEmpty() })
+        assertTrue(
+            TrackKind.entries.all { kind ->
+                demo.tracks
+                    .first { it.kind == kind }
+                    .cells
+                    .isNotEmpty()
+            },
+        )
     }
 }

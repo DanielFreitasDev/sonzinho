@@ -18,8 +18,10 @@ object SongEditor {
             val cells =
                 when {
                     cell in track.cells -> track.cells - cell
+
                     // O grave toca uma nota por vez: escolher outra altura substitui a anterior.
                     kind == TrackKind.BASS -> track.cells.filterNot { it.step == step }.toSet() + cell
+
                     else -> track.cells + cell
                 }
             track.copy(cells = cells)

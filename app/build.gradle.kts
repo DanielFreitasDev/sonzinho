@@ -156,10 +156,11 @@ dependencies {
 // compilados para a máquina host e executados junto com `./gradlew test`.
 val nativeHostTestDir = layout.buildDirectory.dir("native-host-test")
 val nativeSourceDir = layout.projectDirectory.dir("src/main/cpp")
-val hostToolsAvailable = providers.provider {
-    val path = System.getenv("PATH").orEmpty().split(File.pathSeparator)
-    listOf("cmake", "c++").all { tool -> path.any { File(it, tool).canExecute() } }
-}
+val hostToolsAvailable =
+    providers.provider {
+        val path = System.getenv("PATH").orEmpty().split(File.pathSeparator)
+        listOf("cmake", "c++").all { tool -> path.any { File(it, tool).canExecute() } }
+    }
 
 val configureNativeHostTest by tasks.registering(Exec::class) {
     onlyIf("cmake e um compilador C++ do host estão no PATH") { hostToolsAvailable.get() }

@@ -70,31 +70,56 @@ fun LibraryScreen(
 
     val rows: List<LibraryRow> =
         when (tab) {
-            0 ->
+            0 -> {
                 state.songs.map { s ->
                     LibraryRow(
-                        "song-${s.id}", s.name, "${s.steps} passos · ${s.tempoBpm} batidas/min", s.colorIndex, s.showInBaby,
-                        { viewModel.playSong(s) }, { onEditSong(s.id) }, { viewModel.renameSong(s.id, it) },
-                        { viewModel.deleteSong(s.id) }, { viewModel.setSongVisible(s.id, it) },
+                        "song-${s.id}",
+                        s.name,
+                        "${s.steps} passos · ${s.tempoBpm} batidas/min",
+                        s.colorIndex,
+                        s.showInBaby,
+                        { viewModel.playSong(s) },
+                        { onEditSong(s.id) },
+                        { viewModel.renameSong(s.id, it) },
+                        { viewModel.deleteSong(s.id) },
+                        { viewModel.setSongVisible(s.id, it) },
                     )
                 }
-            1 ->
+            }
+
+            1 -> {
                 state.sounds.map { s ->
                     LibraryRow(
-                        "sound-${s.id}", s.name, s.params.shape.displayName, s.colorIndex, s.showInBaby,
-                        { viewModel.playSound(s) }, { onEditSound(s.id) }, { viewModel.renameSound(s.id, it) },
-                        { viewModel.deleteSound(s.id) }, { viewModel.setSoundVisible(s.id, it) },
+                        "sound-${s.id}",
+                        s.name,
+                        s.params.shape.displayName,
+                        s.colorIndex,
+                        s.showInBaby,
+                        { viewModel.playSound(s) },
+                        { onEditSound(s.id) },
+                        { viewModel.renameSound(s.id, it) },
+                        { viewModel.deleteSound(s.id) },
+                        { viewModel.setSoundVisible(s.id, it) },
                     )
                 }
-            else ->
+            }
+
+            else -> {
                 state.recordings.map { r ->
                     LibraryRow(
-                        "rec-${r.id}", r.name, "%d:%02d · %d notas".format(r.durationMs / 60_000, (r.durationMs / 1000) % 60, r.notes.size),
-                        (r.id % 8).toInt(), r.showInBaby,
-                        { viewModel.playRecording(r) }, null, { viewModel.renameRecording(r.id, it) },
-                        { viewModel.deleteRecording(r.id) }, { viewModel.setRecordingVisible(r.id, it) },
+                        "rec-${r.id}",
+                        r.name,
+                        "%d:%02d · %d notas".format(r.durationMs / 60_000, (r.durationMs / 1000) % 60, r.notes.size),
+                        (r.id % 8).toInt(),
+                        r.showInBaby,
+                        { viewModel.playRecording(r) },
+                        null,
+                        { viewModel.renameRecording(r.id, it) },
+                        { viewModel.deleteRecording(r.id) },
+                        { viewModel.setRecordingVisible(r.id, it) },
                     )
                 }
+            }
         }
 
     ParentScaffold(title = "Minhas músicas e sons", onBack = {
@@ -128,7 +153,10 @@ fun LibraryScreen(
                     }
                     val isPlaying = playing == row.key
                     IconButton(onClick = { if (isPlaying) viewModel.stop() else row.onPlay() }) {
-                        Icon(if (isPlaying) Icons.Rounded.Stop else Icons.Rounded.PlayArrow, contentDescription = if (isPlaying) "Parar" else "Tocar")
+                        Icon(
+                            if (isPlaying) Icons.Rounded.Stop else Icons.Rounded.PlayArrow,
+                            contentDescription = if (isPlaying) "Parar" else "Tocar",
+                        )
                     }
                     row.onEdit?.let { edit ->
                         IconButton(onClick = edit) { Icon(Icons.Rounded.Tune, contentDescription = "Editar") }

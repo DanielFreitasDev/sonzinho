@@ -43,8 +43,11 @@ object SoundDesigner {
                 maxSeconds = 0.4f + 2.2f * length,
             )
         return when (params.shape) {
-            SoundShape.BALL -> base.copy(wave = SynthPatch.Wave.SINE, subLevel = 0.15f, gain = 0.85f)
-            SoundShape.FLUTE ->
+            SoundShape.BALL -> {
+                base.copy(wave = SynthPatch.Wave.SINE, subLevel = 0.15f, gain = 0.85f)
+            }
+
+            SoundShape.FLUTE -> {
                 base.copy(
                     wave = SynthPatch.Wave.TRIANGLE,
                     attack = 0.03f,
@@ -52,9 +55,17 @@ object SoundDesigner {
                     noise = 0.03f,
                     gain = 0.75f,
                 )
-            SoundShape.STRING -> base.copy(wave = SynthPatch.Wave.SAW, detuneCents = 6f, gain = 0.5f)
-            SoundShape.ROBOT -> base.copy(wave = SynthPatch.Wave.SQUARE, cutoffHz = cutoff * 0.8f, gain = 0.45f)
-            SoundShape.BELL ->
+            }
+
+            SoundShape.STRING -> {
+                base.copy(wave = SynthPatch.Wave.SAW, detuneCents = 6f, gain = 0.5f)
+            }
+
+            SoundShape.ROBOT -> {
+                base.copy(wave = SynthPatch.Wave.SQUARE, cutoffHz = cutoff * 0.8f, gain = 0.45f)
+            }
+
+            SoundShape.BELL -> {
                 base.copy(
                     wave = SynthPatch.Wave.BELL,
                     fmRatio = 3f + 4f * bright,
@@ -63,7 +74,9 @@ object SoundDesigner {
                     sustain = 0f,
                     gain = 0.6f,
                 )
-            SoundShape.CLOUD ->
+            }
+
+            SoundShape.CLOUD -> {
                 base.copy(
                     wave = SynthPatch.Wave.PAD,
                     detuneCents = 9f,
@@ -73,6 +86,7 @@ object SoundDesigner {
                     gain = 0.5f,
                     reverbSend = 0.5f,
                 )
+            }
         }
     }
 }

@@ -27,8 +27,8 @@ import androidx.compose.material.icons.rounded.ChildCare
 import androidx.compose.material.icons.rounded.FiberManualRecord
 import androidx.compose.material.icons.rounded.GraphicEq
 import androidx.compose.material.icons.rounded.GridView
-import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.LibraryMusic
+import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.MusicNote
 import androidx.compose.material.icons.rounded.Pets
@@ -152,10 +152,20 @@ fun ParentHomeScreen(
 
         Text("Ajustes", style = MaterialTheme.typography.titleLarge)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            MenuCard("Configurações", "Volume, escala, tela, PIN…", Icons.Rounded.Settings, tag = "abrir_config") { onNavigate(Screen.Settings) }
+            MenuCard(
+                "Configurações",
+                "Volume, escala, tela, PIN…",
+                Icons.Rounded.Settings,
+                tag = "abrir_config",
+            ) { onNavigate(Screen.Settings) }
             MenuCard("Travar a tela", "Como fixar o app na Samsung", Icons.Rounded.Lock) { onNavigate(Screen.LockGuide) }
             MenuCard("Créditos dos sons", "Origem e licenças", Icons.Rounded.MusicNote) { onNavigate(Screen.Credits) }
-            MenuCard("Sair do Sonzinho", "Desfixa a tela e fecha o app", Icons.AutoMirrored.Rounded.Logout, tag = "sair_app") { onExitApp() }
+            MenuCard(
+                "Sair do Sonzinho",
+                "Desfixa a tela e fecha o app",
+                Icons.AutoMirrored.Rounded.Logout,
+                tag = "sair_app",
+            ) { onExitApp() }
         }
     }
 }
@@ -230,7 +240,9 @@ fun MessageSnackbar(viewModel: SettingsViewModel) {
     val context = androidx.compose.ui.platform.LocalContext.current
     androidx.compose.runtime.LaunchedEffect(message) {
         message?.let {
-            android.widget.Toast.makeText(context, it, android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast
+                .makeText(context, it, android.widget.Toast.LENGTH_SHORT)
+                .show()
             viewModel.consumeMessage()
         }
     }
@@ -255,7 +267,10 @@ fun WelcomeScreen(
                     "sem erros e sem menus para o bebê.",
                 style = MaterialTheme.typography.bodyLarge,
             )
-            Hint("Para entrar na área dos pais", "Segure o cantinho com a estrela (canto superior esquerdo) por 3 segundos com um dedo só e responda a continha.")
+            Hint(
+                "Para entrar na área dos pais",
+                "Segure o cantinho com a estrela (canto superior esquerdo) por 3 segundos com um dedo só e responda a continha.",
+            )
             Hint("Volume", "O volume máximo começa na metade. Você pode ajustar em Configurações.")
             Hint("Tela travada", "Ative a fixação de apps da Samsung para o bebê não sair da brincadeira. Explicamos o passo a passo.")
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {

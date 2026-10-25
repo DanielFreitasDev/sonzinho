@@ -78,7 +78,12 @@ class FeatureViewModelsTest {
             vm.clearTrack()
             vm.toggle(0, 0)
             assertEquals(Instrument.BASS.id, engine.notes.last().instrumentId)
-            assertEquals(1, vm.state.value.song.tracks.first { it.kind == TrackKind.BASS }.cells.size)
+            assertEquals(
+                1,
+                vm.state.value.song.tracks
+                    .first { it.kind == TrackKind.BASS }
+                    .cells.size,
+            )
         }
 
     @Test
@@ -89,7 +94,12 @@ class FeatureViewModelsTest {
             runCurrent()
             assertTrue(engine.playing)
             assertEquals(1, engine.sequences.size)
-            assertTrue(engine.sequences.single().events.isNotEmpty())
+            assertTrue(
+                engine.sequences
+                    .single()
+                    .events
+                    .isNotEmpty(),
+            )
             assertEquals("Primeira musiquinha", vm.autoItem.value?.title)
             vm.stopAutoMusic()
             assertFalse(engine.playing)
@@ -103,7 +113,12 @@ class FeatureViewModelsTest {
             val vm = BabyViewModel(settings, library, engine, NotePlayer(engine, recorder))
             runCurrent()
             assertEquals(listOf("visível"), vm.babySounds.value.map { it.sound.name })
-            assertEquals(64, vm.babySounds.value.single().slot)
+            assertEquals(
+                64,
+                vm.babySounds.value
+                    .single()
+                    .slot,
+            )
         }
 
     @Test

@@ -10,10 +10,19 @@ on:
 
 permissions:
   contents: write
+  packages: write
+
+# Uma execução por vez: duas não disputam a criação da mesma release.
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-24.04
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7.0.1
@@ -24,6 +33,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           version=$(grep -oP 'versionName = "\K[^"]+' app/build.gradle.kts)
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "tag=v${version}" >> "$GITHUB_OUTPUT"
           if gh release view "v${version}" > /dev/null 2>&1; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
@@ -67,3 +77,39 @@ jobs:
             --target "$GITHUB_SHA" \
             --title "Sonzinho ${TAG}" \
             --notes-file .github/release-notes.md
+
+  # Publica o APK da release no GitHub Packages (registro Maven: dev.danielfreitas:sonzinho, tipo apk).
+  package:
+    needs: release
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: "21"
+          server-id: github
+
+      - name: Publicar package
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.release.outputs.tag }}
+          VERSION: ${{ needs.release.outputs.version }}
+        run: |
+          gh release download "$TAG" --pattern "sonzinho-${TAG}.apk"
+          set +e
+          mvn -B --no-transfer-progress org.apache.maven.plugins:maven-deploy-plugin:3.1.4:deploy-file \
+            -DgroupId=dev.danielfreitas -DartifactId=sonzinho -Dversion="$VERSION" -Dpackaging=apk \
+            -Dfile="sonzinho-${TAG}.apk" -DrepositoryId=github \
+            -Durl="https://maven.pkg.github.com/${GITHUB_REPOSITORY}" 2>&1 | tee deploy.log
+          status=${PIPESTATUS[0]}
+          set -e
+          # Versões publicadas não podem ser sobrescritas: se já existe, está tudo certo.
+          if [ "$status" -ne 0 ] && grep -q "409" deploy.log; then
+            echo "Package ${VERSION} já publicado."
+            exit 0
+          fi
+          exit "$status"

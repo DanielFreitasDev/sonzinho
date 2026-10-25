@@ -47,7 +47,8 @@ echo "sdk.dir=/caminho/para/Android/Sdk" > local.properties
 
 A cada push na `main`, o workflow `.github/workflows/release.yml` roda os testes, compila o APK de
 release e publica a release `v<versionName>` (lida de `app/build.gradle.kts`) com o APK e o hash SHA-256
-anexados, se essa versão ainda não tiver release. Para publicar uma nova versão, aumente
+anexados, se essa versão ainda não tiver release. O mesmo APK é publicado no **GitHub Packages**
+(registro Maven) como `dev.danielfreitas:sonzinho:<versionName>`, tipo `apk`. Para publicar uma nova versão, aumente
 `versionCode` e `versionName` e faça push na `main`. O APK é assinado com a chave de debug gerada no
 runner: serve para uso próprio; como a chave muda a cada execução, desinstale a versão anterior antes
 de instalar a nova.

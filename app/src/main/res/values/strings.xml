@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sonzinho</string>
+    <string name="device_admin_description">Permite que o Sonzinho trave a tela no modo bebê quando os pais ativarem o bloqueio total (Device Owner).</string>
+</resources>

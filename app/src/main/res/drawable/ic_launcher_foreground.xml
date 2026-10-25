@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bolinha sonora sorridente com uma nota musical: a mascote do Sonzinho. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFF8FA3"
+        android:pathData="M54,30c14.4,0 24,10.2 24,24.5S68.4,80 54,80 30,69 30,54.5 39.6,30 54,30z" />
+    <path
+        android:fillColor="#FF2E2066"
+        android:pathData="M45,50a3.2,3.2 0,1 0,6.4 0a3.2,3.2 0,1 0,-6.4 0z" />
+    <path
+        android:fillColor="#FF2E2066"
+        android:pathData="M57,50a3.2,3.2 0,1 0,6.4 0a3.2,3.2 0,1 0,-6.4 0z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF2E2066"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:pathData="M47,60c4,4.6 10,4.6 14,0" />
+    <path
+        android:fillColor="#FFFFD86B"
+        android:pathData="M70,24v14.5a4.6,4.6 0,1 1,-2.6 -4.1V20.5l9.6,-2.4v5.2z" />
+</vector>

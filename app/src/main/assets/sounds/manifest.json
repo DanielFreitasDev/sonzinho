@@ -1,0 +1,449 @@
+{
+ "sampleRate": 48000,
+ "instruments": [
+  {
+   "id": "piano",
+   "zones": [
+    {
+     "file": "piano/04194.webm",
+     "root": 41.942
+    },
+    {
+     "file": "piano/04491.webm",
+     "root": 44.911
+    },
+    {
+     "file": "piano/04790.webm",
+     "root": 47.899
+    },
+    {
+     "file": "piano/05197.webm",
+     "root": 51.966
+    },
+    {
+     "file": "piano/05591.webm",
+     "root": 55.912
+    },
+    {
+     "file": "piano/05996.webm",
+     "root": 59.959
+    },
+    {
+     "file": "piano/06391.webm",
+     "root": 63.912
+    },
+    {
+     "file": "piano/06797.webm",
+     "root": 67.967
+    },
+    {
+     "file": "piano/07199.webm",
+     "root": 71.995
+    },
+    {
+     "file": "piano/07598.webm",
+     "root": 75.981
+    },
+    {
+     "file": "piano/08002.webm",
+     "root": 80.024
+    },
+    {
+     "file": "piano/08399.webm",
+     "root": 83.992
+    },
+    {
+     "file": "piano/08695.webm",
+     "root": 86.952
+    },
+    {
+     "file": "piano/08999.webm",
+     "root": 89.99
+    }
+   ]
+  },
+  {
+   "id": "marimba",
+   "zones": [
+    {
+     "file": "marimba/04099.webm",
+     "root": 40.988
+    },
+    {
+     "file": "marimba/04800.webm",
+     "root": 47.997
+    },
+    {
+     "file": "marimba/05501.webm",
+     "root": 55.006
+    },
+    {
+     "file": "marimba/05903.webm",
+     "root": 59.028
+    },
+    {
+     "file": "marimba/06500.webm",
+     "root": 64.999
+    },
+    {
+     "file": "marimba/07205.webm",
+     "root": 72.046
+    },
+    {
+     "file": "marimba/07898.webm",
+     "root": 78.978
+    },
+    {
+     "file": "marimba/08300.webm",
+     "root": 83.001
+    },
+    {
+     "file": "marimba/08898.webm",
+     "root": 88.978
+    },
+    {
+     "file": "marimba/09600.webm",
+     "root": 96.001
+    }
+   ]
+  },
+  {
+   "id": "glockenspiel",
+   "zones": [
+    {
+     "file": "glockenspiel/07908.webm",
+     "root": 79.083
+    },
+    {
+     "file": "glockenspiel/08412.webm",
+     "root": 84.122
+    },
+    {
+     "file": "glockenspiel/09112.webm",
+     "root": 91.121
+    },
+    {
+     "file": "glockenspiel/09616.webm",
+     "root": 96.155
+    },
+    {
+     "file": "glockenspiel/10316.webm",
+     "root": 103.158
+    },
+    {
+     "file": "glockenspiel/10824.webm",
+     "root": 108.244
+    }
+   ]
+  },
+  {
+   "id": "xylophone",
+   "zones": [
+    {
+     "file": "xylophone/06713.webm",
+     "root": 67.132
+    },
+    {
+     "file": "xylophone/07212.webm",
+     "root": 72.122
+    },
+    {
+     "file": "xylophone/07914.webm",
+     "root": 79.138
+    },
+    {
+     "file": "xylophone/08415.webm",
+     "root": 84.154
+    },
+    {
+     "file": "xylophone/09116.webm",
+     "root": 91.162
+    },
+    {
+     "file": "xylophone/09617.webm",
+     "root": 96.167
+    },
+    {
+     "file": "xylophone/10317.webm",
+     "root": 103.165
+    },
+    {
+     "file": "xylophone/10816.webm",
+     "root": 108.16
+    }
+   ]
+  },
+  {
+   "id": "vibraphone",
+   "zones": [
+    {
+     "file": "vibraphone/05296.webm",
+     "root": 52.958
+    },
+    {
+     "file": "vibraphone/05700.webm",
+     "root": 57.001
+    },
+    {
+     "file": "vibraphone/06000.webm",
+     "root": 60.001
+    },
+    {
+     "file": "vibraphone/06400.webm",
+     "root": 64.0
+    },
+    {
+     "file": "vibraphone/06700.webm",
+     "root": 66.999
+    },
+    {
+     "file": "vibraphone/07100.webm",
+     "root": 70.998
+    },
+    {
+     "file": "vibraphone/07400.webm",
+     "root": 74.0
+    },
+    {
+     "file": "vibraphone/07700.webm",
+     "root": 77.0
+    },
+    {
+     "file": "vibraphone/08100.webm",
+     "root": 80.999
+    },
+    {
+     "file": "vibraphone/08400.webm",
+     "root": 84.0
+    },
+    {
+     "file": "vibraphone/08800.webm",
+     "root": 88.0
+    }
+   ]
+  },
+  {
+   "id": "kalimba",
+   "zones": [
+    {
+     "file": "kalimba/04642.webm",
+     "root": 46.415
+    },
+    {
+     "file": "kalimba/04898.webm",
+     "root": 48.98
+    },
+    {
+     "file": "kalimba/05133.webm",
+     "root": 51.328
+    },
+    {
+     "file": "kalimba/05342.webm",
+     "root": 53.42
+    },
+    {
+     "file": "kalimba/05534.webm",
+     "root": 55.337
+    },
+    {
+     "file": "kalimba/05856.webm",
+     "root": 58.556
+    },
+    {
+     "file": "kalimba/06055.webm",
+     "root": 60.549
+    },
+    {
+     "file": "kalimba/06350.webm",
+     "root": 63.496
+    },
+    {
+     "file": "kalimba/06539.webm",
+     "root": 65.391
+    },
+    {
+     "file": "kalimba/06716.webm",
+     "root": 67.163
+    },
+    {
+     "file": "kalimba/07051.webm",
+     "root": 70.506
+    },
+    {
+     "file": "kalimba/07309.webm",
+     "root": 73.093
+    },
+    {
+     "file": "kalimba/07514.webm",
+     "root": 75.136
+    },
+    {
+     "file": "kalimba/08257.webm",
+     "root": 82.571
+    }
+   ]
+  },
+  {
+   "id": "harp",
+   "zones": [
+    {
+     "file": "harp/03487.webm",
+     "root": 34.865
+    },
+    {
+     "file": "harp/03788.webm",
+     "root": 37.877
+    },
+    {
+     "file": "harp/04090.webm",
+     "root": 40.901
+    },
+    {
+     "file": "harp/04493.webm",
+     "root": 44.929
+    },
+    {
+     "file": "harp/04797.webm",
+     "root": 47.975
+    },
+    {
+     "file": "harp/05194.webm",
+     "root": 51.936
+    },
+    {
+     "file": "harp/05489.webm",
+     "root": 54.891
+    },
+    {
+     "file": "harp/05886.webm",
+     "root": 58.864
+    },
+    {
+     "file": "harp/06187.webm",
+     "root": 61.873
+    },
+    {
+     "file": "harp/06499.webm",
+     "root": 64.992
+    },
+    {
+     "file": "harp/06891.webm",
+     "root": 68.912
+    },
+    {
+     "file": "harp/07188.webm",
+     "root": 71.883
+    },
+    {
+     "file": "harp/07589.webm",
+     "root": 75.888
+    },
+    {
+     "file": "harp/07895.webm",
+     "root": 78.946
+    },
+    {
+     "file": "harp/08291.webm",
+     "root": 82.915
+    },
+    {
+     "file": "harp/08592.webm",
+     "root": 85.924
+    },
+    {
+     "file": "harp/08894.webm",
+     "root": 88.942
+    },
+    {
+     "file": "harp/09281.webm",
+     "root": 92.809
+    },
+    {
+     "file": "harp/09489.webm",
+     "root": 94.891
+    }
+   ]
+  },
+  {
+   "id": "chimes",
+   "zones": [
+    {
+     "file": "chimes/06014.webm",
+     "root": 60.137
+    },
+    {
+     "file": "chimes/06212.webm",
+     "root": 62.118
+    },
+    {
+     "file": "chimes/06407.webm",
+     "root": 64.066
+    },
+    {
+     "file": "chimes/06613.webm",
+     "root": 66.125
+    },
+    {
+     "file": "chimes/06802.webm",
+     "root": 68.018
+    },
+    {
+     "file": "chimes/07003.webm",
+     "root": 70.034
+    },
+    {
+     "file": "chimes/07201.webm",
+     "root": 72.007
+    },
+    {
+     "file": "chimes/07400.webm",
+     "root": 74.003
+    },
+    {
+     "file": "chimes/07603.webm",
+     "root": 76.028
+    },
+    {
+     "file": "chimes/07805.webm",
+     "root": 78.049
+    },
+    {
+     "file": "chimes/08003.webm",
+     "root": 80.027
+    },
+    {
+     "file": "chimes/08101.webm",
+     "root": 81.014
+    },
+    {
+     "file": "chimes/08401.webm",
+     "root": 84.012
+    },
+    {
+     "file": "chimes/08598.webm",
+     "root": 85.978
+    },
+    {
+     "file": "chimes/08804.webm",
+     "root": 88.037
+    },
+    {
+     "file": "chimes/09002.webm",
+     "root": 90.018
+    },
+    {
+     "file": "chimes/09204.webm",
+     "root": 92.044
+    },
+    {
+     "file": "chimes/09403.webm",
+     "root": 94.033
+    },
+    {
+     "file": "chimes/09598.webm",
+     "root": 95.979
+    }
+   ]
+  }
+ ]
+}

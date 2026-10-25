@@ -1,0 +1,179 @@
+{
+ "source": "VCSL — Versilian Community Sample Library (CC0 1.0)",
+ "targetRmsDb": -20,
+ "instruments": [
+  {
+   "id": "piano",
+   "folder": "Chordophones/Zithers/Grand Piano, Kawai/Sustains",
+   "octaveHint": 1,
+   "maxSeconds": 5.0,
+   "gainDb": 0,
+   "files": [
+    "GPiano_sus_F#1_v2_rr1_Player.wav",
+    "GPiano_sus_A1_v2_rr1_Player.wav",
+    "GPiano_sus_C2_v2_rr1_Player.wav",
+    "GPiano_sus_E2_v2_rr1_Player.wav",
+    "GPiano_sus_G#2_v2_rr1_Player.wav",
+    "GPiano_sus_C3_v2_rr1_Player.wav",
+    "GPiano_sus_E3_v2_rr1_Player.wav",
+    "GPiano_sus_G#3_v2_rr1_Player.wav",
+    "GPiano_sus_C4_v2_rr1_Player.wav",
+    "GPiano_sus_E4_v2_rr1_Player.wav",
+    "GPiano_sus_G#4_v2_rr1_Player.wav",
+    "GPiano_sus_C5_v2_rr1_Player.wav",
+    "GPiano_sus_D#5_v2_rr1_Player.wav",
+    "GPiano_sus_F#5_v2_rr1_Player.wav"
+   ]
+  },
+  {
+   "id": "marimba",
+   "folder": "Idiophones/Struck Idiophones/Marimba",
+   "octaveHint": 1,
+   "maxSeconds": 3.0,
+   "gainDb": 1,
+   "files": [
+    "Marimba_hit_Outrigger_B2_soft_01.wav",
+    "Marimba_hit_Outrigger_B4_soft_01.wav",
+    "Marimba_hit_Outrigger_C2_soft_01.wav",
+    "Marimba_hit_Outrigger_C4_soft_01.wav",
+    "Marimba_hit_Outrigger_C6_soft_01.wav",
+    "Marimba_hit_Outrigger_F1_soft_01.wav",
+    "Marimba_hit_Outrigger_F3_soft_01.wav",
+    "Marimba_hit_Outrigger_F5_soft_01.wav",
+    "Marimba_hit_Outrigger_G2_soft_01.wav",
+    "Marimba_hit_Outrigger_G4_soft_01.wav"
+   ]
+  },
+  {
+   "id": "glockenspiel",
+   "folder": "Idiophones/Struck Idiophones/Glockenspiel",
+   "octaveHint": 1,
+   "maxSeconds": 4.0,
+   "gainDb": -4,
+   "files": [
+    "glock_soft_C5_02.wav",
+    "glock_soft_C6_01.wav",
+    "glock_soft_C7_03.wav",
+    "glock_soft_G4_01.wav",
+    "glock_soft_G5_01.wav",
+    "glock_soft_G6_01.wav"
+   ]
+  },
+  {
+   "id": "xylophone",
+   "folder": "Idiophones/Struck Idiophones/Xylophone/Soft Mallets",
+   "octaveHint": 1,
+   "maxSeconds": 2.0,
+   "gainDb": -2,
+   "files": [
+    "Xylo_Soft_C4_pp_01_far.wav",
+    "Xylo_Soft_C5_pp_01_far.wav",
+    "Xylo_Soft_C6_pp_01_far.wav",
+    "Xylo_Soft_C7_pp_01_far.wav",
+    "Xylo_Soft_G3_pp_01_far.wav",
+    "Xylo_Soft_G4_pp_01_far.wav",
+    "Xylo_Soft_G5_pp_01_far.wav",
+    "Xylo_Soft_G6_pp_01_far.wav"
+   ]
+  },
+  {
+   "id": "vibraphone",
+   "folder": "Idiophones/Struck Idiophones/Vibraphone/Soft Mallets",
+   "octaveHint": 1,
+   "maxSeconds": 5.0,
+   "gainDb": -1,
+   "files": [
+    "Vibes_soft_A2_v1_rr1_Main.wav",
+    "Vibes_soft_A4_v1_rr1_Main.wav",
+    "Vibes_soft_B3_v1_rr1_Main.wav",
+    "Vibes_soft_C3_v1_rr2_Main.wav",
+    "Vibes_soft_C5_v1_rr1_Main.wav",
+    "Vibes_soft_D4_v1_rr1_Main.wav",
+    "Vibes_soft_E3_v1_rr2_Main.wav",
+    "Vibes_soft_E5_v1_rr1_Main.wav",
+    "Vibes_soft_F2_v1_rr1_Main.wav",
+    "Vibes_soft_F4_v1_rr1_Main.wav",
+    "Vibes_soft_G3_v1_rr1_Main.wav"
+   ]
+  },
+  {
+   "id": "kalimba",
+   "folder": "Idiophones/Plucked Idiophones/Kalimba, Tanzania",
+   "octaveHint": 1,
+   "maxSeconds": 3.5,
+   "gainDb": 0,
+   "files": [
+    "MBira3_pluck_Main_A#2_k8_50_100_rr2.wav",
+    "MBira3_pluck_Main_A#3_k18_50_100_rr2.wav",
+    "MBira3_pluck_Main_B1_k13_50_100_rr2.wav",
+    "MBira3_pluck_Main_B4_k23_50_100_rr2.wav",
+    "MBira3_pluck_Main_C#2_k10_50_100_rr2.wav",
+    "MBira3_pluck_Main_C#3_k16_50_100_rr2.wav",
+    "MBira3_pluck_Main_C#4_k5_50_100_rr2.wav",
+    "MBira3_pluck_Main_D#2_k14_50_100_rr2.wav",
+    "MBira3_pluck_Main_D#3_k7_50_100_rr2.wav",
+    "MBira3_pluck_Main_F2_k9alt_50_100_rr2.wav",
+    "MBira3_pluck_Main_F3_k17_50_100_rr2.wav",
+    "MBira3_pluck_Main_G2_k15_50_100_rr2.wav",
+    "MBira3_pluck_Main_G3_k6_50_100_rr2.wav",
+    "MBira3_pluck_Main_D#4_k20_50_100_rr2.wav"
+   ]
+  },
+  {
+   "id": "harp",
+   "folder": "Chordophones/Composite Chordophones/Concert Harp",
+   "octaveHint": 0,
+   "maxSeconds": 4.5,
+   "gainDb": 0,
+   "files": [
+    "KSHarp_A2_mf1.wav",
+    "KSHarp_A4_mf1.wav",
+    "KSHarp_A6_mf1.wav",
+    "KSHarp_B1_mf1.wav",
+    "KSHarp_B3_mf1.wav",
+    "KSHarp_B5_mf1.wav",
+    "KSHarp_B6_mf1.wav",
+    "KSHarp_C3_mf3.wav",
+    "KSHarp_C5_mf1.wav",
+    "KSHarp_D2_mf1.wav",
+    "KSHarp_D4_mf1.wav",
+    "KSHarp_D6_mf1.wav",
+    "KSHarp_E3_mf1.wav",
+    "KSHarp_E5_mf1.wav",
+    "KSHarp_F2_mf1.wav",
+    "KSHarp_F4_mf1.wav",
+    "KSHarp_F6_mf1.wav",
+    "KSHarp_G3_mf1.wav",
+    "KSHarp_G5_mf1.wav"
+   ]
+  },
+  {
+   "id": "chimes",
+   "folder": "Idiophones/Struck Idiophones/Hand Chimes",
+   "octaveHint": 1,
+   "maxSeconds": 5.0,
+   "gainDb": -3,
+   "files": [
+    "sus_A#3_r01_main.wav",
+    "sus_A#5_r01_main.wav",
+    "sus_A4_r01_main.wav",
+    "sus_C3_r01_main.wav",
+    "sus_C4_r01_main.wav",
+    "sus_C5_r01_main.wav",
+    "sus_C6_r01_main.wav",
+    "sus_D3_r01_main.wav",
+    "sus_D4_r01_main.wav",
+    "sus_D5_r01_main.wav",
+    "sus_E3_r01_main.wav",
+    "sus_E4_r01_main.wav",
+    "sus_E5_r01_main.wav",
+    "sus_F#3_r01_main.wav",
+    "sus_F#4_r01_main.wav",
+    "sus_F#5_r01_main.wav",
+    "sus_G#3_r01_main.wav",
+    "sus_G#4_r01_main.wav",
+    "sus_G#5_r01_main.wav"
+   ]
+  }
+ ]
+}

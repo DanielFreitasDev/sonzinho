@@ -1,0 +1,47 @@
+# Ajustes sobre a configuração padrão do detekt para um projeto Compose.
+naming:
+  FunctionNaming:
+    # Funções @Composable usam PascalCase.
+    ignoreAnnotated: ['Composable']
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9_]*'
+
+complexity:
+  LongParameterList:
+    functionThreshold: 8
+    ignoreDefaultParameters: true
+    ignoreAnnotated: ['Composable']
+  LongMethod:
+    threshold: 80
+    ignoreAnnotated: ['Composable']
+  TooManyFunctions:
+    thresholdInFiles: 25
+    thresholdInClasses: 25
+    thresholdInInterfaces: 25
+    thresholdInObjects: 25
+  CyclomaticComplexMethod:
+    threshold: 18
+    ignoreSimpleWhenEntries: true
+
+style:
+  MagicNumber:
+    # Números de música/DSP/desenho são autoexplicativos no contexto (escalas, cores, tempos).
+    active: false
+  MaxLineLength:
+    maxLineLength: 140
+  WildcardImport:
+    active: true
+  UnusedPrivateMember:
+    ignoreAnnotated: ['Preview']
+  ReturnCount:
+    max: 4
+  ForbiddenComment:
+    active: false
+
+Compose:
+  ModifierMissing:
+    active: false
+  ViewModelForwarding:
+    active: false
+  CompositionLocalAllowlist:
+    allowedCompositionLocals: ['LocalSonzinhoColors']

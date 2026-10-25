@@ -1,6 +1,5 @@
 package dev.danielfreitas.sonzinho.ui.baby
 
-import android.os.SystemClock
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -78,15 +77,14 @@ fun KeyboardScreen(
             .onSizeChanged { state.size = it }
             .semantics { contentDescription = "Teclado colorido com $count teclas gigantes" }
             .multiTouch(
-                onDown = { id, pos, pressure ->
+                onDown = { id, pos, pressure, time ->
                     val key = state.keyAt(pos, count)
-                    state.pointers[id] = key to SystemClock.uptimeMillis()
+                    state.pointers[id] = key to time
                     press(key, pos, pressure)
                 },
-                onMove = { id, pos ->
+                onMove = { id, pos, now ->
                     val (current, at) = state.pointers[id] ?: return@multiTouch
                     val key = state.keyAt(pos, count)
-                    val now = SystemClock.uptimeMillis()
                     if (key != current && now - at > 60) {
                         state.pointers[id] = key to now
                         press(key, pos, 0.5f)
@@ -191,8 +189,7 @@ private fun DrawScope.drawKeyShape(
                 color,
                 topLeft = Offset(c.x - r * 0.85f, c.y - r * 0.85f),
                 size = Size(r * 1.7f, r * 1.7f),
-                cornerRadius =
-                    CornerRadius(r * 0.4f),
+                cornerRadius = CornerRadius(r * 0.4f),
             )
         }
 

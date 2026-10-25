@@ -93,7 +93,7 @@ fun AnimalsScreen(
             .fillMaxSize()
             .onSizeChanged { state.size = it }
             .semantics { contentDescription = "Bichinhos musicais: toque nos bichinhos para ouvir" }
-            .multiTouch(onDown = { _, pos, _ ->
+            .multiTouch(onDown = { _, pos, _, _ ->
                 val bubble = state.bubbleAt(pos, sounds.size, time())
                 if (bubble >= 0) playBubble(bubble, pos) else playAnimal(state.cellAt(pos, animals.size), pos)
             }),

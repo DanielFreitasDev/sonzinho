@@ -1,6 +1,5 @@
 package dev.danielfreitas.sonzinho.ui.baby
 
-import android.os.SystemClock
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -66,15 +65,14 @@ fun MagicScreen(
             .onSizeChanged { state.size = it }
             .semantics { contentDescription = "Tela mágica: toque em qualquer lugar para fazer música" }
             .multiTouch(
-                onDown = { id, pos, pressure ->
+                onDown = { id, pos, pressure, time ->
                     val region = state.regionAt(pos, notes.size)
-                    state.pointers[id] = PointerTrack(region, SystemClock.uptimeMillis())
+                    state.pointers[id] = PointerTrack(region, time)
                     trigger(region, pos, pressure)
                 },
-                onMove = { id, pos ->
+                onMove = { id, pos, now ->
                     val track = state.pointers[id] ?: return@multiTouch
                     val region = state.regionAt(pos, notes.size)
-                    val now = SystemClock.uptimeMillis()
                     if (region != track.region && now - track.lastNoteAt >= GLISSANDO_MS) {
                         state.pointers[id] = PointerTrack(region, now)
                         trigger(region, pos, 0.5f)

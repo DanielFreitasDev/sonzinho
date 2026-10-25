@@ -69,20 +69,25 @@ fun UnlockCornerDetector(
     val cornerPx = with(LocalDensity.current) { UnlockGesture.CORNER_DP.dp.toPx() }
     var holding by remember { mutableStateOf(false) }
     var progress by remember { mutableFloatStateOf(0f) }
+    // Disparo único por toque: tanto o relógio de quadros quanto o horário dos eventos podem completar o gesto.
+    var fired by remember { mutableStateOf(false) }
+
+    fun complete() {
+        if (fired) return
+        fired = true
+        progress = 0f
+        onHeld()
+    }
 
     LaunchedEffect(holding) {
         progress = 0f
         if (!holding) return@LaunchedEffect
-        // Tempo dos quadros (e não o relógio do sistema): testável com o relógio do Compose.
+        // Dedo totalmente parado não gera eventos: o tempo dos quadros conta o gesto.
         val start = withFrameMillis { it }
-        while (true) {
+        while (!fired) {
             val held = withFrameMillis { it } - start
             progress = UnlockGesture.progress(held)
-            if (held >= UnlockGesture.HOLD_MILLIS) {
-                holding = false
-                onHeld()
-                break
-            }
+            if (held >= UnlockGesture.HOLD_MILLIS) complete()
         }
     }
 
@@ -91,6 +96,7 @@ fun UnlockCornerDetector(
             .fillMaxSize()
             .pointerInput(cornerPx) {
                 awaitPointerEventScope {
+                    var downAt = 0L
                     while (true) {
                         val event = awaitPointerEvent(PointerEventPass.Initial)
                         val down = event.changes.filter { it.pressed }
@@ -98,7 +104,11 @@ fun UnlockCornerDetector(
                             UnlockGesture.isValid(down.size) &&
                                 down[0].position.x <= cornerPx &&
                                 down[0].position.y <= cornerPx
+                        if (inCorner && !holding) downAt = down[0].uptimeMillis
+                        if (!inCorner) fired = false
                         if (inCorner != holding) holding = inCorner
+                        // Pequenos movimentos do dedo trazem o horário real do toque.
+                        if (inCorner && down[0].uptimeMillis - downAt >= UnlockGesture.HOLD_MILLIS) complete()
                     }
                 }
             },
@@ -194,9 +204,7 @@ fun ParentChallengeOverlay(
                         )
                     }
 
-                    GateState.Hidden -> {
-                        Unit
-                    }
+                    GateState.Hidden -> {}
                 }
                 TextButton(onClick = onDismiss) { Text("Voltar a brincar") }
             }

@@ -15,8 +15,8 @@ import androidx.compose.ui.platform.LocalView
  * reconhecer: encostar já toca. Funciona com dezenas de ponteiros ao mesmo tempo.
  */
 fun Modifier.multiTouch(
-    onDown: (id: Long, position: Offset, pressure: Float) -> Unit,
-    onMove: (id: Long, position: Offset) -> Unit = { _, _ -> },
+    onDown: (id: Long, position: Offset, pressure: Float, timeMillis: Long) -> Unit,
+    onMove: (id: Long, position: Offset, timeMillis: Long) -> Unit = { _, _, _ -> },
     onUp: (id: Long) -> Unit = {},
 ): Modifier =
     pointerInput(Unit) {
@@ -26,8 +26,8 @@ fun Modifier.multiTouch(
                 for (change in event.changes) {
                     val id = change.id.toLong()
                     when {
-                        change.pressed && !change.previousPressed -> onDown(id, change.position, change.pressure)
-                        change.pressed -> if (change.position != change.previousPosition) onMove(id, change.position)
+                        change.pressed && !change.previousPressed -> onDown(id, change.position, change.pressure, change.uptimeMillis)
+                        change.pressed -> if (change.position != change.previousPosition) onMove(id, change.position, change.uptimeMillis)
                         change.previousPressed -> onUp(id)
                     }
                     change.consume()

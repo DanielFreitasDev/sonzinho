@@ -67,6 +67,7 @@ android {
         unitTests {
             isIncludeAndroidResources = true
             all {
+                it.maxHeapSize = "3g"
                 // Robolectric (SDK 36) acessa internos de FileDescriptor do JDK 17+.
                 it.jvmArgs(
                     "--add-opens=java.base/java.io=ALL-UNNAMED",
@@ -156,14 +157,12 @@ dependencies {
 // compilados para a máquina host e executados junto com `./gradlew test`.
 val nativeHostTestDir = layout.buildDirectory.dir("native-host-test")
 val nativeSourceDir = layout.projectDirectory.dir("src/main/cpp")
-val hostToolsAvailable =
-    providers.provider {
+
+val configureNativeHostTest by tasks.registering(Exec::class) {
+    onlyIf("cmake e um compilador C++ do host estão no PATH") {
         val path = System.getenv("PATH").orEmpty().split(File.pathSeparator)
         listOf("cmake", "c++").all { tool -> path.any { File(it, tool).canExecute() } }
     }
-
-val configureNativeHostTest by tasks.registering(Exec::class) {
-    onlyIf("cmake e um compilador C++ do host estão no PATH") { hostToolsAvailable.get() }
     inputs.dir(nativeSourceDir)
     outputs.dir(nativeHostTestDir)
     commandLine(
@@ -180,7 +179,10 @@ val nativeHostTest by tasks.registering(Exec::class) {
     description = "Compila e executa os testes do motor de áudio no host."
     group = "verification"
     dependsOn(configureNativeHostTest)
-    onlyIf("cmake e um compilador C++ do host estão no PATH") { hostToolsAvailable.get() }
+    onlyIf("cmake e um compilador C++ do host estão no PATH") {
+        val path = System.getenv("PATH").orEmpty().split(File.pathSeparator)
+        listOf("cmake", "c++").all { tool -> path.any { File(it, tool).canExecute() } }
+    }
     inputs.dir(nativeSourceDir)
     outputs.upToDateWhen { false }
     commandLine(

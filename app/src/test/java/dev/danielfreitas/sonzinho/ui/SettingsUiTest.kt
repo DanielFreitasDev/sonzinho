@@ -1,12 +1,13 @@
 package dev.danielfreitas.sonzinho.ui
 
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
-import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import dev.danielfreitas.sonzinho.domain.model.AnimationLevel
 import dev.danielfreitas.sonzinho.domain.model.BabyActivity
 import dev.danielfreitas.sonzinho.domain.usecase.FreePlayRecorder
 import dev.danielfreitas.sonzinho.testing.FakeAudioEngine
@@ -31,32 +32,24 @@ class SettingsUiTest {
     private val vm = SettingsViewModel(settings, FakeLibraryRepository(), FakeAudioEngine(), FreePlayRecorder { 0L })
 
     @Test
-    fun configuracoes_em_portugues_e_criar_pin() {
-        // O cursor piscando do campo de texto é uma animação infinita: relógio manual.
-        compose.mainClock.autoAdvance = false
+    fun configuracoes_em_portugues_salvam_ajustes() {
         compose.setContent {
             SonzinhoTheme {
-                SettingsScreen(
-                    onBack = {},
-                    onLockGuide = {},
-                    onCredits = {},
-                    isDeviceOwner = false,
-                    onRemoveDeviceOwner = {},
-                    viewModel = vm,
-                )
+                SettingsScreen(onBack = {
+                }, onLockGuide = {}, onCredits = {}, isDeviceOwner = false, onRemoveDeviceOwner = {}, viewModel = vm)
             }
         }
-        compose.mainClock.advanceTimeBy(100)
         compose.onNodeWithText("Volume máximo").assertExists()
         compose.onNodeWithText("Pentatônica alegre").assertExists()
-        compose.onNodeWithTag("trocar_pin").performScrollTo().performClick()
-        compose.onNodeWithText("PIN dos pais").assertExists()
-        compose.mainClock.advanceTimeBy(300)
-        compose.onNodeWithTag("novo_pin").performTextInput("2580")
-        compose.onNodeWithTag("repita_pin").performTextInput("2580")
-        compose.onNodeWithText("Salvar").performClick()
-        compose.mainClock.advanceTimeBy(100)
-        assertTrue(settings.settings.value.hasPin)
+        compose.onNodeWithText("Criar PIN").assertExists()
+        compose.onNodeWithText("Calminha").performScrollTo().performClick()
+        compose.onNodeWithText("30 min").performScrollTo().performClick()
+        compose.onNodeWithContentDescription("Vibração ao tocar").performScrollTo().performClick()
+        compose.waitForIdle()
+        val saved = settings.settings.value
+        assertEquals(AnimationLevel.CALM, saved.animationLevel)
+        assertEquals(30, saved.usageReminderMinutes)
+        assertTrue(saved.vibration)
     }
 
     @Test

@@ -444,6 +444,57 @@
      "root": 95.979
     }
    ]
+  },
+  {
+   "id": "kalimba_soft",
+   "zones": [
+    {
+     "file": "kalimba_soft/05999.webm",
+     "root": 59.993
+    },
+    {
+     "file": "kalimba_soft/07200.webm",
+     "root": 72.001
+    },
+    {
+     "file": "kalimba_soft/08415.webm",
+     "root": 84.153
+    }
+   ]
+  },
+  {
+   "id": "musicbox",
+   "zones": [
+    {
+     "file": "musicbox/07188.webm",
+     "root": 71.876
+    },
+    {
+     "file": "musicbox/08380.webm",
+     "root": 83.799
+    },
+    {
+     "file": "musicbox/09591.webm",
+     "root": 95.906
+    }
+   ]
+  },
+  {
+   "id": "recorder",
+   "zones": [
+    {
+     "file": "recorder/07401.webm",
+     "root": 74.009
+    },
+    {
+     "file": "recorder/08406.webm",
+     "root": 84.061
+    },
+    {
+     "file": "recorder/09108.webm",
+     "root": 91.083
+    }
+   ]
   }
  ]
 }

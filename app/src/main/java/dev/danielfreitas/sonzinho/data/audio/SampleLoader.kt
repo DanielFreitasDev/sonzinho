@@ -49,6 +49,9 @@ internal enum class SampledSpec(
     KALIMBA("kalimba", 5, 1.2f, 0.5f),
     HARP("harp", 6, 1.2f, 0.7f),
     CHIMES("chimes", 7, 1.5f, 1.0f),
+    KALIMBA_SOFT("kalimba_soft", 8, 1.2f, 0.5f),
+    MUSIC_BOX("musicbox", 9, 1.1f, 0.6f),
+    RECORDER("recorder", 10, 1.0f, 0.12f),
 }
 
 /**

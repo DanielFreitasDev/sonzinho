@@ -15,6 +15,8 @@ Run from the repository root; requires the Android SDK (`platforms;android-37.0`
 - C++ core only: `cmake -S app/src/main/cpp/tests -B /tmp/nht && cmake --build /tmp/nht && /tmp/nht/audio_core_tests`.
 - Regenerate samples: `python3 -I tools/samples/prepare_samples.py <VCSL-clone> app/src/main/assets/sounds`
   (needs ffmpeg with libsoxr/libopus, numpy, soundfile).
+  Melimba samples (author's own app): `python3 -I tools/samples/import_melimba.py <melimba-clone> app/src/main/assets/sounds`
+  (updates only its entries in `manifest.json`; run after `prepare_samples.py`, which rewrites the manifest).
 - Release: every push to `main` runs `.github/workflows/release.yml`; if release `v<versionName>` does not
   exist it runs tests, builds the APK, creates tag + release and publishes `dev.danielfreitas:sonzinho`
   (type `apk`) to GitHub Packages. Bump `versionCode`/`versionName` to publish a new version (verified 2026-10-25).
@@ -24,7 +26,7 @@ Run from the repository root; requires the Android SDK (`platforms;android-37.0`
 - Only stable (non alpha/beta/RC) dependency versions, pinned in `gradle/libs.versions.toml`.
 - No permissions in the manifest (no `INTERNET`); the app must stay 100% offline.
 - Every bundled third-party file must be CC0/public domain (or CC-BY credited) and listed in `CREDITS.md`
-  and the in-app credits screen.
+  and the in-app credits screen. The author's own Melimba samples are allowed and credited the same way.
 - Audio callback rules: no allocation, locks, logging or I/O inside `Engine::render`; UI talks to it only
   through `CommandQueue`. `SynthPatch` field order is a contract between `SynthPatch.h` and `SynthPatch.kt`.
 - Baby-facing screens: no reading required, no menus, every touch must sound, no fast flashes.

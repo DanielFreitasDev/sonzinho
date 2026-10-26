@@ -118,13 +118,19 @@ private val credits =
             "github.com/sgossner/VCSL · amostras em camadas suaves, reamostradas para 48 kHz e convertidas para Opus.",
         ),
         Credit(
+            "Kalimba doce, caixinha de música e flauta doce",
+            "Daniel Freitas (Tenzen) — app Melimba, do mesmo autor do Sonzinho",
+            "Uso autorizado pelo autor",
+            "Amostras do Melimba reamostradas para 48 kHz, medidas, aparadas e convertidas para Opus.",
+        ),
+        Credit(
             "Fonte Nunito",
             "The Nunito Project Authors (Vernon Adams, Cyreal, Jacques Le Bailly)",
             "SIL Open Font License 1.1",
             "github.com/googlefonts/nunito",
         ),
         Credit(
-            "Vozes dos bichinhos, nuvem, grave, celesta, caixinha de música e sons criados",
+            "Vozes dos bichinhos, nuvem, grave, celesta, caixinha mágica e sons criados",
             "Sintetizados em tempo real pelo próprio Sonzinho",
             "Parte do app",
             "Nenhuma gravação externa: osciladores, filtros e envelopes do motor de áudio.",

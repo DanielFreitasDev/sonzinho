@@ -95,7 +95,7 @@ bool Voice::render(const MixBus& bus, int frames) {
 
 bool Voice::renderSample(const MixBus& bus, int frames) {
     if (zone_ == nullptr || zone_->frames < 4) {
-        env_.steal();
+        env_.stop();
         return false;
     }
     const int16_t* pcm = zone_->pcm.data();
@@ -115,7 +115,10 @@ bool Voice::renderSample(const MixBus& bus, int frames) {
         for (int i = 0; i < n; ++i) {
             const int idx = static_cast<int>(position_);
             if (idx >= last - 2) {
-                env_.steal();
+                // A amostra já termina em silêncio (fade-out no preparo). Um steal() aqui nunca
+                // concluiria, pois next() não é mais chamado: a voz ficaria presa para sempre e,
+                // com o pool cheio dessas vozes, o motor descartaria todo toque novo.
+                env_.stop();
                 return false;
             }
             const float t = static_cast<float>(position_ - idx);

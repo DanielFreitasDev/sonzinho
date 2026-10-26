@@ -36,6 +36,9 @@ public:
         stealStep_ = std::max(level_, kSilence) / (kStealSeconds * sampleRate_);
     }
 
+    // Encerra na hora: para quando o próprio som já acabou (fim da amostra, que termina em fade).
+    void stop() { finish(); }
+
     float next() {
         switch (stage_) {
             case Stage::Idle:

@@ -308,6 +308,23 @@ void testEngineSequenceTriggersNotes() {
     CHECK(engine.activeVoices() == 0);
 }
 
+void testSampleEndFreesVoice() {
+    // Cada nota que toca até o fim da amostra precisa devolver a voz ao pool: antes, ela ficava
+    // presa e, depois de kVoicePool toques, o motor ficava mudo até o app ser reiniciado.
+    Engine engine;
+    engine.setConfig(dryConfig());
+    engine.publishInstrument(0, sineInstrument(69.0f, 0.3f));
+    Rendered last;
+    for (int i = 0; i < Engine::kVoicePool * 2; ++i) {
+        engine.noteOn(0, 69.0f, 0.8f, 0, 0);
+        Rendered r;
+        render(engine, r, 24000);
+        CHECK(engine.activeVoices() == 0);
+        last = r;
+    }
+    CHECK(last.peak() > 0.05f);
+}
+
 }  // namespace
 
 int main() {
@@ -325,6 +342,7 @@ int main() {
         {"mudar andamento preserva a fase", testSequenceTempoChangeKeepsPhase},
         {"fila de comandos não bloqueia", testCommandQueueNeverBlocks},
         {"motor toca a sequência", testEngineSequenceTriggersNotes},
+        {"fim da amostra libera a voz", testSampleEndFreesVoice},
     };
     for (const auto& [name, fn] : tests) {
         const int before = failures;

@@ -3,6 +3,7 @@
 Leia as entradas relacionadas à tarefa. Os detalhes ficam em `docs/learning/`.
 
 ## Bugs e soluções
+- [Voz presa no fim da amostra](docs/learning/bug-voz-presa-fim-amostra.md) — o som sumia após muitos toques; vozes que acabam usam `stop()`, não `steal()`.
 
 ## Pegadinhas de ambiente, dependências e bibliotecas
 - [Oitavas e afinação da VCSL](docs/learning/gotcha-vcsl-oitavas.md) — nomes de nota inconsistentes; use a raiz medida no manifest.
